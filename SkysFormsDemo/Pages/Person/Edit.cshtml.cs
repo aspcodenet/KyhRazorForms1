@@ -8,7 +8,7 @@ using SkysFormsDemo.Data;
 namespace SkysFormsDemo.Pages.Person
 {
     [BindProperties]
-    public class NewModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
@@ -20,7 +20,7 @@ namespace SkysFormsDemo.Pages.Person
         public string PostalCode { get; set; }
         public decimal Salary { get; set; }
 
-        [Range(0,8,ErrorMessage = "Du måste ha mellan 0 och 8 bilar dummer")]
+        [Range(0, 8, ErrorMessage = "Du måste ha mellan 0 och 8 bilar dummer")]
         public int CarCount { get; set; }
 
         public string City { get; set; }
@@ -33,15 +33,26 @@ namespace SkysFormsDemo.Pages.Person
         public List<SelectListItem> AllCountries { get; set; }
 
 
-
-        public NewModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
-        public void OnGet()
+
+        public void OnGet(int personId)
         {
+            //Set properties från databas
+            var person = _context.Person.Include(p=>p.Country).First(e => e.Id == personId);
+            Name = person.Name;
+            StreetAddress = person.StreetAddress;
+            PostalCode = person.PostalCode;
+            Salary = person.Salary;
+            City = person.City;
+            Email = person.Email;
+            CarCount = person.CarCount;
+            CountryId = person.Country.Id;
             SetAllCountries();
         }
+
 
         public void SetAllCountries()
         {
@@ -52,11 +63,12 @@ namespace SkysFormsDemo.Pages.Person
             }).ToList();
         }
 
-        public IActionResult OnPost()
+
+        public IActionResult OnPost(int personId)
         {
             if (ModelState.IsValid)
             {
-                var person = new Data.Person();
+                var person = _context.Person.First(e => e.Id == personId);
                 person.Email = Email;
                 person.CarCount = CarCount;
                 person.City = City;
@@ -65,21 +77,20 @@ namespace SkysFormsDemo.Pages.Person
                 person.PostalCode = PostalCode;
                 person.Salary = Salary;
 
-                person.Country = _context.Countries.First(e=>e.Id == CountryId);
+                person.Country = _context.Countries.First(e => e.Id == CountryId);
 
-                _context.Person.Add(person);
                 _context.SaveChanges();
 
                 //Spara i databas
                 return RedirectToPage("Index");
             }
-
             //Visa felen och rita om formuläret
             SetAllCountries();
             return Page();
 
         }
 
-        // OnPost
+
+
     }
 }
