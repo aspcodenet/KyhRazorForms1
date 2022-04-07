@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkysFormsDemo.Data;
 using SkysFormsDemo.Services;
+using SkysFormsDemo.ViewModels;
 
 namespace SkysFormsDemo.Pages.Person
 {
@@ -11,15 +12,8 @@ namespace SkysFormsDemo.Pages.Person
     {
         private readonly IPersonService _personService;
         private readonly ApplicationDbContext _context;
-        public List<PersonViewModel> Persons { get; set; }
+        public List<PersonRowViewModel> Persons { get; set; }
 
-        public class PersonViewModel
-        {
-            public int Id { get; set; }       
-            public string Name { get; set; }
-            public string City { get; set; }
-            public string Email { get; set; }
-        }
 
         public IndexModel(IPersonService personService, ApplicationDbContext context)
         {
@@ -38,7 +32,7 @@ namespace SkysFormsDemo.Pages.Person
 
         public void OnGet()
         {
-            Persons = _personService.GetPersons().Select(r => new PersonViewModel
+            Persons = _personService.GetPersons().Select(r => new PersonRowViewModel
             {
                 City = r.City,
                 Id = r.Id,

@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model SkysFormsDemo.ViewModels.PersonRowViewModel
+
+
+@{
+}
+<tr>
+    <td>@Model.Name</td>
+    <td>@Model.Email</td>
+    <td>@Model.City</td>
+    <td>
+        <a asp-page="Edit" asp-route-personId="@Model.Id"><i class='bx bx-edit'></i></a>
+    </td>
+    <td>
+        <a asp-page="View" asp-route-personId="@Model.Id">
+            <i class='bx bxs-user-detail'></i>
+        </a>
+    </td>
+
+    <td>
+        <a href="javascript:fetchInfo(@Model.Id)">
+            I
+        </a>
+    </td>
+
+</tr>

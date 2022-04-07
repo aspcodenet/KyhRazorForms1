@@ -2,6 +2,8 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SkysFormsDemo.Data;
+using SkysFormsDemo.ViewModels;
+
 
 namespace SkysFormsDemo.Pages.Person
 {
@@ -9,15 +11,7 @@ namespace SkysFormsDemo.Pages.Person
     {
         private readonly ApplicationDbContext _context;
 
-        public List<PersonViewModel> Persons { get; set; }
-
-        public class PersonViewModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string City { get; set; }
-            public string Email { get; set; }
-        }
+        public List<PersonRowViewModel> Persons { get; set; }
 
         public ProffsModel(ApplicationDbContext context)
         {
@@ -25,7 +19,7 @@ namespace SkysFormsDemo.Pages.Person
         }
         public void OnGet()
         {
-            Persons = _context.Person.Where(a=>a.Name.StartsWith("A")).Select(r => new PersonViewModel
+            Persons = _context.Person.Where(a=>a.Name.StartsWith("A")).Select(r => new PersonRowViewModel
             {
                 City = r.City,
                 Id = r.Id,
