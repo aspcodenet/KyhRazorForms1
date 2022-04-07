@@ -17,21 +17,37 @@ namespace SkysFormsDemo.Pages.Person
 
 
         public string StreetAddress { get; set; }
+        
         public string PostalCode { get; set; }
         public decimal Salary { get; set; }
 
         [Range(0,8,ErrorMessage = "Du måste ha mellan 0 och 8 bilar dummer")]
         public int CarCount { get; set; }
 
+        [Required]
+        [MaxLength(30)]
         public string City { get; set; }
+        
+        [EmailAddress]
         public string Email { get; set; }
 
+        public bool IsCool { get; set; }
+
+        [MaxLength(1000)]
+        public string Cv { get; set; }
+
+
+        [DataType(DataType.Date)]
         public DateTime Datum { get; set; }
 
-        public int CountryId { get; set; }
+        [Required(ErrorMessage = "Ange ett LAND dummer")]
+        public string CountryId { get; set; }
 
         public List<SelectListItem> AllCountries { get; set; }
 
+        public List<SelectListItem> AllPositions{ get; set; }
+
+        public PlayerPosition SelectedPosition { get; set; }
 
 
         public NewModel(ApplicationDbContext context)
@@ -40,7 +56,25 @@ namespace SkysFormsDemo.Pages.Person
         }
         public void OnGet()
         {
+            Datum = DateTime.Now;
+            //SelectedPosition = PlayerPosition.Forward;
+            SetAllLists();
+        }
+
+        private void SetAllLists()
+        {
             SetAllCountries();
+            SetAllPositions();
+        }
+
+
+        public void SetAllPositions()
+        {
+            AllPositions = Enum.GetValues<PlayerPosition>().Select(p => new SelectListItem
+            {
+                Text = p.ToString(),
+                Value = p.ToString()
+            }).ToList();
         }
 
         public void SetAllCountries()
@@ -50,10 +84,25 @@ namespace SkysFormsDemo.Pages.Person
                 Text = country.Name,
                 Value = country.Id.ToString()
             }).ToList();
+            AllCountries.Insert(0,new SelectListItem
+            {
+                Value = "",
+                Text = "Please select a country"
+            });
+        }
+
+        public bool IsValidPostNummer(string inmatat)
+        {
+            //fråga mot databasen om inmatat 
+            return inmatat.StartsWith("2");
         }
 
         public IActionResult OnPost()
         {
+            if (IsValidPostNummer(PostalCode) == false)
+            {
+                ModelState.AddModelError("PostalCode","Det är inte valid postnummer");
+            }
             if (ModelState.IsValid)
             {
                 var person = new Data.Person();
@@ -65,7 +114,7 @@ namespace SkysFormsDemo.Pages.Person
                 person.PostalCode = PostalCode;
                 person.Salary = Salary;
 
-                person.Country = _context.Countries.First(e=>e.Id == CountryId);
+                person.Country = _context.Countries.First(e=>e.Id.ToString() == CountryId);
 
                 _context.Person.Add(person);
                 _context.SaveChanges();
@@ -75,7 +124,8 @@ namespace SkysFormsDemo.Pages.Person
             }
 
             //Visa felen och rita om formuläret
-            SetAllCountries();
+            SetAllLists();
+
             return Page();
 
         }

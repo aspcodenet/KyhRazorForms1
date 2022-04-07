@@ -6,5 +6,6 @@ public enum PlayerPosition
     Goalie,    
     Defence,
     Forward,
-    Center
+    Center,
+    Coach
 }
