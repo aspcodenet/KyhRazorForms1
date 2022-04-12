@@ -12,6 +12,7 @@ namespace SkysFormsDemo.Pages
         public string Email { get; set; }
 
 
+        [Required(ErrorMessage = "sdasdadsa")]
         [Compare(nameof(Email), ErrorMessage = "Ange samma som ovan")]
         public string EmailAgain { get; set; }
 
@@ -20,6 +21,7 @@ namespace SkysFormsDemo.Pages
         public string Password { get; set; }
 
         [Compare(nameof(Password), ErrorMessage = "Ange samma password igen")]
+        [DataType(DataType.Password)]
         public string PasswordAgain { get; set; }
 
 
