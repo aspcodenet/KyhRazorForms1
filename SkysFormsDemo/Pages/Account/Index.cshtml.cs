@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SkysFormsDemo.Data;
 using SkysFormsDemo.Services;
 
 namespace SkysFormsDemo.Pages.Account
 {
     public class IndexModel : PageModel
     {
-        private readonly IAccountService _accountService;
+        private readonly ApplicationDbContext _context;
         public List<KontoViewModel> Konton { get; set; }
 
         public class KontoViewModel
@@ -16,14 +17,14 @@ namespace SkysFormsDemo.Pages.Account
             public decimal Balance { get; set; }
         }
 
-        public IndexModel(IAccountService accountService)
+        public IndexModel(ApplicationDbContext context)
         {
-            _accountService = accountService;
+            _context = context;
         }
 
         public void OnGet()
         {
-            Konton = _accountService.GetAll().Select(r => new KontoViewModel
+            Konton = _context.Accounts.Select(r => new KontoViewModel
             {
                 Id = r.Id,
                 AccountNo = r.AccountNo,
