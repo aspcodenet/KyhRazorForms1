@@ -37,7 +37,30 @@
         <span asp-validation-for="Age" class="field-validation-error"></span>
     </div>
 
+
+    <div class="form-group">
+        <label asp-for="CountryCode">Land</label>
+        <select class="form-control" asp-for="CountryCode" asp-items="@Model.Countries" >  
+        </select>
+        <span asp-validation-for="CountryCode" class="field-validation-error"></span>
+    </div>
+
     
+    <div class="form-group">
+        <label asp-for="Capital">Huvudstad</label>
+        <input class="form-control" asp-for="Capital" />  
+        <span asp-validation-for="Capital" class="field-validation-error"></span>
+    </div>
+    
+    
+    <div class="form-group">
+        <label asp-for="Year">Ange ett årtal</label>
+        <input class="form-control" asp-for="Year" />  
+        <span asp-validation-for="Year" class="field-validation-error"></span>
+    </div>
+
+
+
     <button type="submit" class="btn">Save</button>
 
 
