@@ -26,7 +26,7 @@ namespace SkysFormsDemo.Pages
         [Range(18,50,ErrorMessage = "Ange en ålder mellan 18 och 50")]
         public int Age { get; set; }
 
-        public string ImportantMessage { get; set; }
+//        public string ImportantMessage { get; set; }
 
         public void OnGet()
         {
@@ -39,7 +39,7 @@ namespace SkysFormsDemo.Pages
                 return RedirectToPage("/Index"); //Vi är inloggade
             }
 
-            ImportantMessage = "Se till att skriva in  rätt dummer";
+//            ImportantMessage = "Se till att skriva in  rätt dummer";
             return Page();
         }
 
