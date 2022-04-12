@@ -1,0 +1,45 @@
+﻿@page
+@model SkysFormsDemo.Pages.RegisterModel
+@{
+}
+
+
+<h1>@Model.ImportantMessage</h1>
+<form method="post">
+    
+    <div class="form-group">
+        <label asp-for="Email">Epost</label>
+        <input class="form-control" asp-for="Email" />  
+        <span asp-validation-for="Email" class="field-validation-error"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmailAgain">Upprepa eposten</label>
+        <input class="form-control" asp-for="EmailAgain" />  
+        <span asp-validation-for="EmailAgain" class="field-validation-error"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Lösen</label>
+        <input class="form-control" asp-for="Password" />  
+        <span asp-validation-for="Password" class="field-validation-error"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PasswordAgain">Lösen igen</label>
+        <input class="form-control" asp-for="PasswordAgain" />  
+        <span asp-validation-for="PasswordAgain" class="field-validation-error"></span>
+    </div>
+    
+    
+    <div class="form-group">
+        <label asp-for="Age">Ange ålder</label>
+        <input class="form-control" asp-for="Age" />  
+        <span asp-validation-for="Age" class="field-validation-error"></span>
+    </div>
+
+    
+    <button type="submit" class="btn">Save</button>
+
+
+</form>

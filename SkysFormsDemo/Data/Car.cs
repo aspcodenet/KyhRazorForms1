@@ -1,13 +1,19 @@
-﻿namespace SkysFormsDemo.Data;
+﻿using Microsoft.EntityFrameworkCore;
 
+namespace SkysFormsDemo.Data;
+
+[Index(nameof(Manufacturer))]
+[Index(nameof(Type))]
+[Index(nameof(Fuel))]
 public class Car
 {
     public int Id { get; set; }
+
     public string Vin { get; set; }
     public string Manufacturer { get; set; }
     public string Model { get; set; }
     public string Type { get; set; }
-    public string Fuel { get; set; }
+    public string Fuel{ get; set; }
 
     public DateTime BoughtDate { get; set; }
 }

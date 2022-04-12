@@ -101,7 +101,7 @@ namespace SkysFormsDemo.Pages.Person
         {
             if (IsValidPostNummer(PostalCode) == false)
             {
-                ModelState.AddModelError("PostalCode","Det är inte valid postnummer");
+                ModelState.AddModelError(nameof(PostalCode),"Det är inte valid postnummer");
             }
             if (ModelState.IsValid)
             {
