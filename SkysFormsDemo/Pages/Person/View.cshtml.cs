@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkysFormsDemo.Data;
+using SkysFormsDemo.Infrastructure.Paging;
 
 namespace SkysFormsDemo.Pages.Person
 {
@@ -43,16 +44,13 @@ namespace SkysFormsDemo.Pages.Person
 
         public IActionResult OnGetFetchMore(int personId, int pageNo)
         {
-            //DateTime dateOfLastShown = new DateTime(lastTicks).AddMilliseconds(100);
-
-
-
-            var list = _context.Person
-                .Where(e => e.Id == personId)
+            var query = _context.Person.Where(e => e.Id == personId)
                 .SelectMany(e => e.OwnedCars)
                 .OrderBy(e => e.BoughtDate)
-                .Take(5)
-                .Select(e => new Item
+                ;
+            var r = query.GetPaged(pageNo,5);
+
+            var list =   r.Results.Select(e => new Item
                 {
                     BoughtDate = e.BoughtDate,
                     Id = e.Id,

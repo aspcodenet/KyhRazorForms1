@@ -35,7 +35,7 @@
             fetch("View?handler=FetchMore&pageNo=" + pageNo + "&personId=@Model.Id")
                 .then((response) => response.json())
                 .then((json) => {
-                        page = page + 1;
+                        pageNo = pageNo + 1;
                         json.items.forEach(tableElements);
                     }
                 );
