@@ -9,7 +9,9 @@
     <title>@ViewData["Title"] - SkysFormsDemo</title>
 </head>
 <body>
-    
+<h1>
+    @await RenderSectionAsync("SuperDuperHeading", required: false)
+</h1>
     <div class="grid-container">
         <header class="header">
             <div class="header__search">
@@ -78,7 +80,6 @@
 
 
 <partial name="_ValidationScriptsPartial"/>
-
 
 
 </body>

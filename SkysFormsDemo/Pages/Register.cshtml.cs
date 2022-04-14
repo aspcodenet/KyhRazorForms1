@@ -63,7 +63,7 @@ namespace SkysFormsDemo.Pages
             _context = context;
         }
 
-        public void OnGet()
+        public void OnGet(string test = "", string ?test2="")
         {
             FillDropdowns();
         }

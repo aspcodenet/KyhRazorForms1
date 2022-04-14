@@ -10,14 +10,13 @@ namespace SkysFormsDemo.Pages.Person
 {
     public class IndexModel : PageModel
     {
-        private readonly IPersonService _personService;
+        //private readonly IPersonService _personService;
         private readonly ApplicationDbContext _context;
         public List<PersonRowViewModel> Persons { get; set; }
 
 
-        public IndexModel(IPersonService personService, ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
-            _personService = personService;
             _context = context;
         }
 
@@ -32,7 +31,7 @@ namespace SkysFormsDemo.Pages.Person
 
         public void OnGet()
         {
-            Persons = _personService.GetPersons().Select(r => new PersonRowViewModel
+            Persons = _context.Person.Select(r => new PersonRowViewModel
             {
                 City = r.City,
                 Id = r.Id,
