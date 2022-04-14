@@ -63,7 +63,9 @@ namespace SkysFormsDemo.Pages.Person
 
                 }).ToList();
 
-            return new JsonResult(new {items = list});
+            bool lastPage = pageNo == r.PageCount;
+
+            return new JsonResult(new {items = list, lastPage  = lastPage });
         }
     }
 }
