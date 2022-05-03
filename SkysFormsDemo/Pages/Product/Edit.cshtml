@@ -1,0 +1,48 @@
+﻿@page
+@model SkysFormsDemo.Pages.Product.EditModel
+@{
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h1>Ny product</h1>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Name">Namn</label>
+                <input class="form-control" asp-for="Name" />  
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Color">Color</label>
+                <input class="form-control" asp-for="Color">
+                <span asp-validation-for="Color" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price">Pris</label>
+                <input class="form-control" asp-for="Price">
+                <span asp-validation-for="Price" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PopularityPercent">Popularity </label>
+                <input class="form-control" asp-for="PopularityPercent">
+                <span asp-validation-for="PopularityPercent" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ean13">Ean</label>
+                <input class="form-control" asp-for="Ean13">
+                <span asp-validation-for="Ean13" class="field-validation-error"></span>
+            </div>
+            
+
+
+            <button type="submit" class="btn">Save</button>
+
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@page
+@model SkysFormsDemo.Pages.Product.IndexModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Alla produkter</h1>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tr>
+                <th>Namn</th>
+                <th>Ean</th>
+                <th>Pris</th>
+                <th></th>
+            </tr>
+            @foreach (var person in Model.Items)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Ean</td>
+                    <td>@person.Price</td>
+                    <td><a asp-page="Edit" asp-route-id="@person.Id">Edit</a></td>
+                </tr>
+            }
+        </table>
+        
+        <a class="btn" asp-page="New">Create new</a>
+
+    </div>
+</div>
