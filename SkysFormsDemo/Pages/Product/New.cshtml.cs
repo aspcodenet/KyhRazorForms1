@@ -1,6 +1,6 @@
+using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SkysFormsDemo.Data;
 
 namespace SkysFormsDemo.Pages.Product
 {
@@ -27,7 +27,7 @@ namespace SkysFormsDemo.Pages.Product
         {
             if (ModelState.IsValid)
             {
-                var product = new Data.Product
+                var product = new GoodToHave.Data.Product
                 {
                     Name = Name,
                     Price = Price,

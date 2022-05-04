@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoodToHave.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SkysFormsDemo.Data;
+using SkysFormsDemo.Services;
 
 namespace SkysFormsDemo.Pages
 {
@@ -20,7 +21,7 @@ namespace SkysFormsDemo.Pages
 
         public List<Item> NewItems { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
+        public IndexModel(ISearchService searchService, ILogger<IndexModel> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;

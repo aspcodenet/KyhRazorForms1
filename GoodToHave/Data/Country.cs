@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SkysFormsDemo.Data;
+namespace GoodToHave.Data;
 
 public class Country
 {

@@ -1,5 +1,5 @@
+using GoodToHave.Data;
 using Microsoft.EntityFrameworkCore;
-using SkysFormsDemo.Data;
 using SkysFormsDemo.Services;
 using Microsoft.AspNetCore.Identity;
 
@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddTransient<ISearchService, SearchService>();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<IPersonService,PersonService>();
 builder.Services.AddTransient<IAccountService, AccountService>();

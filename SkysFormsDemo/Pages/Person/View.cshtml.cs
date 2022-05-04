@@ -1,7 +1,7 @@
+using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SkysFormsDemo.Data;
 using SkysFormsDemo.Infrastructure.Paging;
 
 namespace SkysFormsDemo.Pages.Person

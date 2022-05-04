@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SkysFormsDemo.Data;
+namespace GoodToHave.Data;
 
 [Index(nameof(Manufacturer))]
 [Index(nameof(Type))]

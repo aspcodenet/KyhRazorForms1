@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
+using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using SkysFormsDemo.Data;
 using SkysFormsDemo.Infrastructure.Validation;
 
 namespace SkysFormsDemo.Pages

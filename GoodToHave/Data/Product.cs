@@ -1,4 +1,4 @@
-﻿namespace SkysFormsDemo.Data;
+﻿namespace GoodToHave.Data;
 
 public class Product
 {

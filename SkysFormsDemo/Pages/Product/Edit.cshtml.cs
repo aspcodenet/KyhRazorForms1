@@ -1,6 +1,6 @@
+using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SkysFormsDemo.Data;
 
 namespace SkysFormsDemo.Pages.Product
 {

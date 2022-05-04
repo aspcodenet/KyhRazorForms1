@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace SkysFormsDemo.Data;
+namespace GoodToHave.Data;
 
 public class DataInitializer
 {

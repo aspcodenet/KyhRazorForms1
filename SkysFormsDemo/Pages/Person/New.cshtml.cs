@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SkysFormsDemo.Data;
 
 namespace SkysFormsDemo.Pages.Person
 {
@@ -105,7 +105,7 @@ namespace SkysFormsDemo.Pages.Person
             }
             if (ModelState.IsValid)
             {
-                var person = new Data.Person();
+                var person = new GoodToHave.Data.Person();
                 person.Email = Email;
                 person.CarCount = CarCount;
                 person.City = City;

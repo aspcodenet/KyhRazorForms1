@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 
-namespace SkysFormsDemo.Data;
+namespace GoodToHave.Data;
 
 public class Person
 {

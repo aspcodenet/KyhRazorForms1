@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
 
-namespace SkysFormsDemo.Data;
+namespace GoodToHave.Data;
 
 public class Account
 {
