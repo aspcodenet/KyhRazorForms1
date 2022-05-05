@@ -2,6 +2,7 @@ using GoodToHave.Data;
 using Microsoft.EntityFrameworkCore;
 using SkysFormsDemo.Services;
 using Microsoft.AspNetCore.Identity;
+using SkysFormsDemo.Infrastructure.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddTransient<ISearchService, SearchService>();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<IPersonService,PersonService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddAutoMapper(typeof(PersonProfile));
 var app = builder.Build();
 
 
@@ -47,5 +49,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

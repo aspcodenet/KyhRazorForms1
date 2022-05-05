@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ namespace SkysFormsDemo.Pages.Person
     public class NewModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
         [StringLength(100)]
         public string Name { get; set; }
@@ -50,9 +52,10 @@ namespace SkysFormsDemo.Pages.Person
         public PlayerPosition SelectedPosition { get; set; }
 
 
-        public NewModel(ApplicationDbContext context)
+        public NewModel(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public void OnGet()
         {

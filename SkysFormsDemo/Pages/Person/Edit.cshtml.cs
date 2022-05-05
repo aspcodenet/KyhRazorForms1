@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using GoodToHave.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ namespace SkysFormsDemo.Pages.Person
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
         [StringLength(100)]
         public string Name { get; set; }
@@ -33,23 +35,28 @@ namespace SkysFormsDemo.Pages.Person
         public List<SelectListItem> AllCountries { get; set; }
 
 
-        public EditModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public void OnGet(int personId)
         {
             //Set properties från databas
             var person = _context.Person.Include(p=>p.Country).First(e => e.Id == personId);
-            Name = person.Name;
-            StreetAddress = person.StreetAddress;
-            PostalCode = person.PostalCode;
-            Salary = person.Salary;
-            City = person.City;
-            Email = person.Email;
-            CarCount = person.CarCount;
-            CountryId = person.Country.Id;
+
+            _mapper.Map( person, this);
+
+
+            //Name = person.Name;
+            //StreetAddress = person.StreetAddress;
+            //PostalCode = person.PostalCode;
+            //Salary = person.Salary;
+            //City = person.City;
+            //Email = person.Email;
+            //CarCount = person.CarCount;
+            //CountryId = person.Country.Id;
             SetAllCountries();
         }
 
